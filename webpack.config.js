@@ -1,15 +1,16 @@
 var webpack = require('webpack'),
+    path = require('path'),
     BrowserSyncPlugin = require('browser-sync-webpack-plugin'),
     PATHS = {
-	app : __dirname + "/app"
-};
+        app : __dirname + "/app"
+    };
 
 module.exports = {
     context: PATHS.app,
     entry: "./js/index.js",
     output: {
         path: PATHS.app,
-        filename: "/js/bundle.js"
+        filename: "/js/bundle.min.js"
     },
     module: {
         loaders:[
@@ -27,7 +28,13 @@ module.exports = {
             jQuery: "jquery"
         }),
         new BrowserSyncPlugin({
-          proxy: 'localhost:8080'
+            proxy: 'localhost:8080'
+        }, {
+            name: 'bs-instance',
+            callback: function() {
+                console.log('browserSync started!');
+            },
+            reload: true
         })
     ]
 };

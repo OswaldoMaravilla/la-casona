@@ -1,3 +1,3 @@
-import "jquery";
-import "bootstrap-webpack";
+import jquery from "jquery";
+import bootstrap from "bootstrap-webpack";
 import "./app.js";
